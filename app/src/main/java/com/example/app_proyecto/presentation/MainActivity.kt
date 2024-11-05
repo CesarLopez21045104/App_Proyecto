@@ -1,5 +1,6 @@
 package com.example.app_proyecto.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -91,12 +92,17 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun restartGame() {
+        // Restablece el estado del juego
         currentQuestion = 0
         score = 0
         findViewById<Button>(R.id.answer_button1).visibility = Button.VISIBLE
         findViewById<Button>(R.id.answer_button2).visibility = Button.VISIBLE
         findViewById<Button>(R.id.answer_button3).visibility = Button.VISIBLE
         findViewById<Button>(R.id.restart_button).visibility = Button.GONE
-        showQuestion()
+
+        // Navegar de regreso a activity_welcome
+        val intent = Intent(this, WelcomeActivity::class.java) // Cambia ActivityWelcome por el nombre de la actividad correspondiente
+        startActivity(intent)
+        finish() // Opcional: finaliza la actividad actual para evitar regresar con el botón "Atrás"
     }
 }
